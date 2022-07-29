@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import Tracker from "./components/Tracker";
+import Entry from "./components/Entry";
 
-function App() {
+import { Button, useDisclosure } from "@chakra-ui/react";
+import { Toaster } from "react-hot-toast";
+
+const App = () => {
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar addButtonClick={onOpen} />
+      <Tracker />
+      <Entry isOpen={isOpen} onClose={onClose} />
+
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
+    </>
   );
 }
 
